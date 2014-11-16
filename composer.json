@@ -17,5 +17,8 @@
 		"kdyby/console": "*"
 	},
 	"require-dev": {
+	},
+	"autoload": {
+		"classmap": ["app/"]
 	}
 }
