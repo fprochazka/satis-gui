@@ -107,7 +107,7 @@ class Builder extends Nette\Object implements IConsumer
 		);
 
 		$process = new Process($command, $this->outputDir);
-		$process->setTimeout(15 * 60);
+		$process->setTimeout(30 * 60);
 		$process->run($callback);
 
 		return $process;
