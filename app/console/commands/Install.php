@@ -21,12 +21,7 @@ class Install extends Command
 
 
 
-	const USERS_TABLE_DDL = 'CREATE  TABLE "main"."users" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "username" VARCHAR UNIQUE , "password" VARCHAR)';
-	const PACKAGES_TABLE_DDL = 'CREATE  TABLE "main"."packages" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "type" VARCHAR, "url" VARCHAR UNIQUE )';
-
-
-
-	function __construct(Container $container)
+	public function __construct(Container $container)
 	{
 		parent::__construct();
 		$this->container = $container;
@@ -45,13 +40,14 @@ class Install extends Command
 		$db = $this->container->getByType('Nette\Database\Connection');
 
 		try {
-			$db->query(self::USERS_TABLE_DDL);
-			$db->query(self::PACKAGES_TABLE_DDL);
+			$db->query('CREATE  TABLE "main"."users" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "username" VARCHAR UNIQUE , "password" VARCHAR)');
+			$db->query('CREATE  TABLE "main"."packages" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "type" VARCHAR, "url" VARCHAR UNIQUE )');
+
 			$output->writeln('App installed');
+
 		} catch (\PDOException $e) {
 			$output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
 		}
 	}
-
 
 }

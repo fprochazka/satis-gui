@@ -21,7 +21,7 @@ class CreateUser extends Command
 
 
 
-	function __construct(Container $container)
+	public function __construct(Container $container)
 	{
 		parent::__construct();
 		$this->container = $container;
@@ -46,6 +46,5 @@ class CreateUser extends Command
 
 		$output->writeln("User $login was added.");
 	}
-
 
 }

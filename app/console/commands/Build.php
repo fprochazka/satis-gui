@@ -22,7 +22,7 @@ class Build extends Command
 
 
 
-	function __construct(Container $container)
+	public function __construct(Container $container)
 	{
 		parent::__construct();
 		$this->container = $container;
@@ -54,6 +54,5 @@ class Build extends Command
 
 		$output->writeln('built package.json');
 	}
-
 
 }
