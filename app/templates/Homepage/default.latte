@@ -4,7 +4,7 @@
 	Webhook url: <code>{link //Webhook: password => $webhookPassword}</code>
 </div>
 
-<div class="row" n:if="file_exists($bodyTagContentsFile)">
+<div class="row" n:if="!empty($bodyTagContentsFile) && file_exists($bodyTagContentsFile)">
 	<div class="col-sm-12 packagesIndex">
 		{include $bodyTagContentsFile}
 	</div>
