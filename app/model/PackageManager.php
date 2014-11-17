@@ -52,7 +52,7 @@ class PackageManager
 
 	public function getAll()
 	{
-		return $this->db->table(self::TABLE_NAME);
+		return $this->db->table(self::TABLE_NAME)->order('name ASC');
 	}
 
 
