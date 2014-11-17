@@ -26,6 +26,9 @@ parameters:
 	webhook:
 		password: webhookpassword
 
+	composer:
+		home: ~/.composer
+
 
 nette:
 	application:
@@ -65,7 +68,7 @@ services:
 	- App\Model\PackageManager(%configFile%, %satis%)
 	- App\Model\HtmlIndexManager(%wwwDir%/index.html, %tempDir%/cache/index)
 
-	- App\Model\Builder(%outputDir%, %appDir%/../vendor/bin/satis)
+	- App\Model\Builder(%outputDir%, %appDir%/../vendor/bin/satis, %composer.home%)
 
 	- {class: Console\Commands\CreateUser, tags: [kdyby.console.command]}
 	- {class: Console\Commands\Install, tags: [kdyby.console.command]}

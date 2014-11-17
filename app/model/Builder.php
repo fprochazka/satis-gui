@@ -31,6 +31,11 @@ class Builder extends Nette\Object implements IConsumer
 	private $binFile;
 
 	/**
+	 * @var string
+	 */
+	private $composerHome;
+
+	/**
 	 * @var PackageManager
 	 */
 	private $packages;
@@ -47,10 +52,11 @@ class Builder extends Nette\Object implements IConsumer
 
 
 
-	public function __construct($outputDir, $binFile, PackageManager $packages, Connection $rabbit, Logger $logger)
+	public function __construct($outputDir, $binFile, $composerHome, PackageManager $packages, Connection $rabbit, Logger $logger)
 	{
 		$this->outputDir = realpath($outputDir);
 		$this->binFile = realpath($binFile);
+		$this->composerHome = $composerHome;
 		$this->packages = $packages;
 		$this->rabbit = $rabbit;
 		$this->logger = $logger->channel('satis-builder');
@@ -130,7 +136,9 @@ class Builder extends Nette\Object implements IConsumer
 			implode(' ', $packages)
 		);
 
-		$process = new Process($command, $this->outputDir);
+		$process = new Process($command, $this->outputDir, [
+			'COMPOSER_HOME' => $this->composerHome
+		]);
 		$process->setTimeout(30 * 60);
 
 		return $process;
