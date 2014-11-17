@@ -6,6 +6,7 @@ use Kdyby\RabbitMq\Connection;
 use Kdyby\RabbitMq\IConsumer;
 use Kdyby\Monolog\Logger;
 use Nette;
+use Nette\Utils\Json;
 use PhpAmqpLib\Message\AMQPMessage;
 use Symfony\Component\Process\Process;
 
@@ -59,7 +60,7 @@ class Builder extends Nette\Object implements IConsumer
 	public function enqueueBuild()
 	{
 		$this->rabbit->getProducer('satisBuild')
-			->publish(Nette\Utils\Json::encode(['at' => new \DateTime()]));
+			->publish(Json::encode(['at' => new \DateTime()]));
 	}
 
 
@@ -70,7 +71,7 @@ class Builder extends Nette\Object implements IConsumer
 			return FALSE;
 		}
 
-		if (!is_array($request = Nette\Utils\Json::decode($message->body))) {
+		if (!$request = Json::decode($message->body, Json::FORCE_ARRAY)) {
 			return FALSE;
 		}
 
