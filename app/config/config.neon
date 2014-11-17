@@ -5,8 +5,9 @@
 # http://nette.org/security-warning
 #
 php:
-	date.timezone: Europe/Bratislava
+	date.timezone: Europe/Prague
 	zlib.output_compression: yes
+
 
 parameters:
 	configFile: %tempDir%/satis.json
@@ -24,6 +25,7 @@ parameters:
 
 	webhook:
 		password: webhookpassword
+
 
 nette:
 	application:
