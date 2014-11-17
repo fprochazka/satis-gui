@@ -23,7 +23,7 @@ class Builder
 
 
 
-	function __construct($configFile, $outputDir, $binFile)
+	public function __construct($configFile, $outputDir, $binFile)
 	{
 		$this->configFile = realpath($configFile);
 		$this->outputDir = realpath($outputDir);
@@ -41,6 +41,5 @@ class Builder
 
 		return $process->getOutput();
 	}
-
 
 }

@@ -17,8 +17,6 @@ class PackageManager
 
 	const TABLE_NAME = 'packages';
 
-
-
 	/** @var string */
 	private $configFile;
 
@@ -33,7 +31,7 @@ class PackageManager
 
 
 
-	function __construct($configFile, $parameters, Context $db, Request $httpRequest)
+	public function __construct($configFile, $parameters, Context $db, Request $httpRequest)
 	{
 		$this->configFile = $configFile;
 		$this->parameters = $parameters;
@@ -90,6 +88,5 @@ class PackageManager
 
 		FileSystem::write($this->configFile, $json);
 	}
-
 
 }

@@ -17,7 +17,7 @@ class WebhookPresenter extends BasePresenter
 
 
 
-	function __construct(Builder $builder)
+	public function __construct(Builder $builder)
 	{
 		$this->builder = $builder;
 	}
@@ -30,6 +30,5 @@ class WebhookPresenter extends BasePresenter
 		}
 		$this->terminate();
 	}
-
 
 }

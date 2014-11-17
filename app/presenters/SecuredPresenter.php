@@ -17,5 +17,4 @@ class SecuredPresenter extends BasePresenter
 		}
 	}
 
-
 }

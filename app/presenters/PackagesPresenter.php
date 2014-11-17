@@ -24,7 +24,7 @@ class PackagesPresenter extends SecuredPresenter
 
 
 
-	function __construct(PackageManager $packageManager, Builder $builder)
+	public function __construct(PackageManager $packageManager, Builder $builder)
 	{
 		$this->packageManager = $packageManager;
 		$this->builder = $builder;
@@ -92,6 +92,5 @@ class PackagesPresenter extends SecuredPresenter
 		}
 		$this->redirect('this');
 	}
-
 
 }

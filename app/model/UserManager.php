@@ -19,7 +19,6 @@ class UserManager extends Nette\Object implements Nette\Security\IAuthenticator
 		COLUMN_PASSWORD_HASH = 'password',
 		COLUMN_ROLE = 'role';
 
-
 	/** @var Nette\Database\Context */
 	private $database;
 

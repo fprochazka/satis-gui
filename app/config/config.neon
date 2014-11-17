@@ -9,14 +9,13 @@ php:
 	zlib.output_compression: yes
 
 parameters:
-	configFile: %appDir%/../data/satis.json
-	outputDir: %appDir%/../www
+	configFile: %tempDir%/satis.json
+	outputDir: %wwwDir%
 	satis:
 		name: A Composer Repository
-		#homepage: %domain%
-		require-all: TRUE
-		require-dependencies: TRUE
-		require-dev-dependencies: TRUE
+		require-all: true
+		require-dependencies: true
+		require-dev-dependencies: true
 		archive:
 			directory: %outputDir%/dist
 			format: zip
@@ -45,10 +44,10 @@ extensions:
 
 services:
 
-	- App\RouterFactory
+	- App\RouterFactory()
 	router: @App\RouterFactory::createRouter
 
-	- App\Model\UserManager
+	- App\Model\UserManager()
 	- App\Model\PackageManager(%configFile%, %satis%)
 
 	- App\Model\Builder(%configFile%, %outputDir%, %appDir%/../vendor/composer/satis/bin/satis)

@@ -14,5 +14,4 @@ class HomepagePresenter extends SecuredPresenter
 		$this->template->wwwDir = $this->context->parameters['wwwDir'];
 	}
 
-
 }
