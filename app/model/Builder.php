@@ -9,6 +9,7 @@ use Nette;
 use Nette\Utils\Json;
 use PhpAmqpLib\Message\AMQPMessage;
 use Symfony\Component\Process\Process;
+use Tracy\Debugger;
 
 
 
@@ -68,20 +69,32 @@ class Builder extends Nette\Object implements IConsumer
 	public function process($message)
 	{
 		if (!$message instanceof AMQPMessage) {
-			return FALSE;
+			return self::MSG_REJECT;
 		}
 
 		if (!$request = Json::decode($message->body, Json::FORCE_ARRAY)) {
-			return FALSE;
+			return self::MSG_REJECT;
 		}
 
-		$process = $this->build();
+		$process = $this->buildCommand();
 
-		if (!$process->isSuccessful()) {
-			$this->logger->addWarning('Build of satis package has failed');
+		try {
+			$process->run();
 
-		} else {
+			if (!$process->isSuccessful()) {
+				throw new \RuntimeException('Build of satis package has failed: ' . $process->getErrorOutput(), $process->getExitCode());
+			}
+
 			$this->logger->addDebug('Build of satis package was successful');
+
+		} catch (\RuntimeException $e) {
+			file_put_contents(Debugger::$logDirectory . '/failure-output-' . date('YmdHis') . '.' . uniqid() . '.log', $process->getOutput());
+			$this->logger->addWarning($e->getMessage());
+			return self::MSG_REJECT_REQUEUE;
+
+		} catch (\Exception $e) {
+			Debugger::log($e, Debugger::ERROR);
+			return self::MSG_REJECT;
 		}
 
 		return self::MSG_ACK;
@@ -94,7 +107,18 @@ class Builder extends Nette\Object implements IConsumer
 	 * @param callable $callback
 	 * @return Process
 	 */
-	public function build(array $packages = [], callable $callback = NULL)
+	public function runBuild(array $packages = [], callable $callback = NULL)
+	{
+		$this->buildCommand($packages)->run($callback);
+	}
+
+
+
+	/**
+	 * @param array $packages
+	 * @return Process
+	 */
+	protected function buildCommand(array $packages = [])
 	{
 		$this->packages->compileConfig();
 
@@ -108,7 +132,6 @@ class Builder extends Nette\Object implements IConsumer
 
 		$process = new Process($command, $this->outputDir);
 		$process->setTimeout(30 * 60);
-		$process->run($callback);
 
 		return $process;
 	}

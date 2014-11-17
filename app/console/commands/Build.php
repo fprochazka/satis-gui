@@ -45,7 +45,7 @@ class Build extends Command
 
 		/** @var \App\Model\Builder $builder */
 		$builder = $this->container->getByType('App\Model\Builder');
-		$builder->build($packages, function ($type, $buffer) use($output) {
+		$builder->runBuild($packages, function ($type, $buffer) use($output) {
 			if ($type === Process::ERR) {
 				$output->write(sprintf('<error>%s</error>', $buffer));
 			} else {
