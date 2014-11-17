@@ -8,6 +8,10 @@ $configurator = new Configurator;
 
 $configurator->enableDebugger(__DIR__ . '/../log');
 $configurator->setTempDirectory(__DIR__ . '/../temp');
+$configurator->addParameters([
+	'appDir' => __DIR__,
+	'wwwDir' => __DIR__ . '/../www',
+]);
 
 if ($configurator->isDebugMode()) {
 	$configurator->createRobotLoader()
