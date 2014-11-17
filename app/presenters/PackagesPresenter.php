@@ -37,6 +37,7 @@ class PackagesPresenter extends SecuredPresenter
 
 		$form->addText('type', 'Type')->setDefaultValue('vcs')->setRequired();
 		$form->addText('url', 'Url')->setRequired();
+		$form->addText('name', 'Package name')->setRequired();
 
 		$form->addSubmit('btnSubmit', 'Add');
 
@@ -51,9 +52,10 @@ class PackagesPresenter extends SecuredPresenter
 		$values = $form->getValues();
 
 		try {
-			$this->packageManager->add($values->type, $values->url);
+			$this->packageManager->add($values->type, $values->url, $values->name);
 			$this->packageManager->compileConfig();
 			$this->flashMessage('Package added.', 'success');
+
 		} catch (PDOException $e) {
 			if ($e->getCode() === '23000') {
 				$this->flashMessage('Package already exists.', 'danger');

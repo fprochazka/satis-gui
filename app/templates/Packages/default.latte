@@ -9,6 +9,10 @@
 		<label n:name="url">URL</label>
 		<input type="text" class="form-control" n:name="url">
 	</div>
+	<div class="form-group">
+		<label n:name="name">Package name</label>
+		<input type="text" class="form-control" n:name="name">
+	</div>
 
 	<input n:name="btnSubmit" class="btn btn-primary">
 </form>
@@ -23,12 +27,14 @@
 	<tr>
 		<th>Type</th>
 		<th>URL</th>
+		<th>Package name</th>
 		<th></th>
 	</tr>
 
 	<tr n:foreach="$packages as $package">
 		<td>{$package->type}</td>
 		<td>{$package->url}</td>
+		<td>{$package->name}</td>
 		<td><a n:href="delete! id => $package->id" onclick="confirm('Really delete package?');"><i class="glyphicon glyphicon-remove"></i> delete</a></td>
 	</tr>
 </table>

@@ -40,8 +40,8 @@ class Install extends Command
 		$db = $this->container->getByType('Nette\Database\Connection');
 
 		try {
-			$db->query('CREATE  TABLE "main"."users" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "username" VARCHAR UNIQUE , "password" VARCHAR)');
-			$db->query('CREATE  TABLE "main"."packages" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "type" VARCHAR, "url" VARCHAR UNIQUE )');
+			$db->query('CREATE TABLE "main"."users" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL, "username" VARCHAR UNIQUE , "password" VARCHAR)');
+			$db->query('CREATE TABLE "main"."packages" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL, "type" VARCHAR, "url" VARCHAR UNIQUE, "name" VARCHAR UNIQUE)');
 
 			$output->writeln('App installed');
 

@@ -40,11 +40,12 @@ class PackageManager
 	}
 
 
-	public function add($type, $url)
+	public function add($type, $url, $packageName)
 	{
 		$this->db->table(self::TABLE_NAME)->insert([
 			'type' => $type,
-			'url' => $url
+			'url' => $url,
+			'name' => $packageName,
 		]);
 	}
 
@@ -70,7 +71,9 @@ class PackageManager
 		$config = [
 			'homepage' => $domain,
 			'repositories' => [
-			]
+				 ["type" => "composer", "url" => "https://packagist.org/"],
+			],
+			'require' => [],
 		];
 
 		foreach ($this->parameters as $property => $value) {
@@ -82,10 +85,11 @@ class PackageManager
 				'type' => $repository->type,
 				'url' => $repository->url
 			];
+
+			$config['require'][$repository->name] = '*';
 		}
 
 		$json = Json::encode($config, Json::PRETTY);
-
 		FileSystem::write($this->configFile, $json);
 	}
 
