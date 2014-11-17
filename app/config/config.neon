@@ -11,6 +11,7 @@ php:
 parameters:
 	configFile: %tempDir%/satis.json
 	outputDir: %wwwDir%
+	logDir: %appDir%/../log
 
 	satis:
 		name: A Composer Repository
