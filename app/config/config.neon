@@ -50,7 +50,7 @@ services:
 	- App\Model\UserManager()
 	- App\Model\PackageManager(%configFile%, %satis%)
 
-	- App\Model\Builder(%configFile%, %outputDir%, %appDir%/../vendor/composer/satis/bin/satis)
+	- App\Model\Builder(%outputDir%, %appDir%/../vendor/composer/satis/bin/satis)
 
 	- {class: Console\Commands\CreateUser, tags: [kdyby.console.command]}
 	- {class: Console\Commands\Install, tags: [kdyby.console.command]}

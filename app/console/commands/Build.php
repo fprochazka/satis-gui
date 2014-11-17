@@ -43,6 +43,7 @@ class Build extends Command
 
 		$packages = explode(' ', $input->getArgument('packages'));
 
+		/** @var \App\Model\Builder $builder */
 		$builder = $this->container->getByType('App\Model\Builder');
 		$builder->build($packages, function ($type, $buffer) use($output) {
 			if ($type === Process::ERR) {

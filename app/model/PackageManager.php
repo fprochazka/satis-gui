@@ -89,4 +89,13 @@ class PackageManager
 		FileSystem::write($this->configFile, $json);
 	}
 
+
+	/**
+	 * @return string
+	 */
+	public function getConfigFile()
+	{
+		return $this->configFile;
+	}
+
 }
