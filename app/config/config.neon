@@ -45,7 +45,7 @@ extensions:
 
 services:
 
-	- App\RouterFactory()
+	- App\RouterFactory(%productionMode%)
 	router: @App\RouterFactory::createRouter
 
 	- App\Model\UserManager()
