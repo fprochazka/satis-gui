@@ -1,0 +1,13 @@
+rabbitmq:
+	producers:
+		satisBuild:
+			exchange: {name: satisBuild, type: direct}
+			contentType: application/vnd.php.serialized
+
+
+	consumers:
+		satisBuild:
+			queue: {name: satisBuild}
+			qos: {prefetchCount: 1}
+			idleTimeout: 60
+			callback: @App\Model\Builder::process

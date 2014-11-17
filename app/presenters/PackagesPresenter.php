@@ -84,14 +84,8 @@ class PackagesPresenter extends SecuredPresenter
 
 	public function handleBuild()
 	{
-		try {
-			$this->builder->build();
-			$this->flashMessage('Packages json built.', 'success');
-
-		} catch (RuntimeException $e) {
-			$this->flashMessage('There was an error building packages.json: ' . $e->getMessage(), 'danger');
-		}
-
+		$this->builder->enqueueBuild();
+		$this->flashMessage('Repository build was scheduled.', 'success');
 		$this->redirect('this');
 	}
 

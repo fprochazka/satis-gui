@@ -14,7 +14,9 @@
 		"nette/nette": "~2.2",
 		"composer/satis": "@dev",
 		"composer/composer": "1.0.*@dev",
-		"kdyby/console": "*"
+		"kdyby/console": "*",
+		"kdyby/rabbitmq": "~1.0@dev",
+		"kdyby/monolog": "~1.0@dev"
 	},
 	"require-dev": {
 	},

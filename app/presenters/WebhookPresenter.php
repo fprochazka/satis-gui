@@ -36,7 +36,7 @@ class WebhookPresenter extends BasePresenter
 	public function actionDefault($password)
 	{
 		if ($password === $this->context->parameters['webhook']['password']) {
-			$this->builder->build();
+			$this->builder->enqueueBuild();
 		}
 
 		$logDir = $this->context->expand('%logDir%/api-calls.log');

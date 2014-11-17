@@ -43,8 +43,18 @@ nette:
 		options:
 			lazy: yes
 
+
 extensions:
-	- Kdyby\Console\DI\ConsoleExtension
+	console: Kdyby\Console\DI\ConsoleExtension
+	rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
+	monolog: Kdyby\Monolog\DI\MonologExtension
+
+
+monolog:
+	name: satis-gui
+	handlers:
+		- Monolog\Handler\SyslogHandler(satis-gui, local4)
+
 
 services:
 
@@ -60,3 +70,8 @@ services:
 	- {class: Console\Commands\CreateUser, tags: [kdyby.console.command]}
 	- {class: Console\Commands\Install, tags: [kdyby.console.command]}
 	- {class: Console\Commands\Build, tags: [kdyby.console.command]}
+
+
+
+includes:
+	- rabbitmq.neon
