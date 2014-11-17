@@ -31,9 +31,9 @@ class CreateUser extends Command
 	protected function configure()
 	{
 		$this->setName('user:create')
-				->addArgument('login', InputArgument::REQUIRED, 'login?')
-				->addArgument('password', InputArgument::REQUIRED, 'password?')
-				->setDescription('Create a user');
+			->addArgument('login', InputArgument::REQUIRED, 'login?')
+			->addArgument('password', InputArgument::REQUIRED, 'password?')
+			->setDescription('Create a user');
 	}
 
 

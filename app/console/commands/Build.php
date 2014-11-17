@@ -32,8 +32,8 @@ class Build extends Command
 	protected function configure()
 	{
 		$this->setName('satis:build')
-				->addArgument('packages', InputArgument::OPTIONAL, 'list of packages you want to rebuild', '')
-				->setDescription('build');
+			->addArgument('packages', InputArgument::OPTIONAL, 'list of packages you want to rebuild', '')
+			->setDescription('build');
 	}
 
 
