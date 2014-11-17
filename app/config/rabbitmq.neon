@@ -2,7 +2,7 @@ rabbitmq:
 	producers:
 		satisBuild:
 			exchange: {name: satisBuild, type: direct}
-			contentType: application/vnd.php.serialized
+			contentType: application/json
 
 
 	consumers:
