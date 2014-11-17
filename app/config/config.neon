@@ -74,6 +74,9 @@ services:
 	- {class: Console\Commands\Install, tags: [kdyby.console.command]}
 	- {class: Console\Commands\Build, tags: [kdyby.console.command]}
 
+	nette.latteFactory:
+		setup:
+			- setAutoRefresh(TRUE)
 
 
 includes:
