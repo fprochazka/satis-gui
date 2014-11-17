@@ -13,7 +13,7 @@ class SecuredPresenter extends BasePresenter
 		parent::startup();
 
 		if (!$this->user->isLoggedIn()) {
-			$this->redirect('sign:in');
+			$this->redirect('Sign:in');
 		}
 	}
 
