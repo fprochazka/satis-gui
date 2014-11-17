@@ -51,7 +51,7 @@ class Builder
 		);
 
 		$process = new Process($command, $this->outputDir);
-		$process->setTimeout(0);
+		$process->setTimeout(15 * 60);
 		$process->run($callback);
 
 		return $process->getOutput();
