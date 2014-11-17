@@ -1,8 +1,12 @@
 {block content}
 
 <div class="well">
-	Webhook url: {link //webhook: password => $webhookPassword}
+	Webhook url: <code>{link //webhook: password => $webhookPassword}</code>
 </div>
 
-<iframe src="{$basePath}/index.html" id="homepage" scrolling="no" n:if="file_exists($wwwDir.'/index.html')"></iframe>
+<div class="row">
+	<div class="col-sm-12 packagesIndex">
+		{include $bodyTagContentsFile}
+	</div>
+</div>
 {/block}

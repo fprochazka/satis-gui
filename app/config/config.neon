@@ -11,6 +11,7 @@ php:
 parameters:
 	configFile: %tempDir%/satis.json
 	outputDir: %wwwDir%
+
 	satis:
 		name: A Composer Repository
 		require-all: false
@@ -49,6 +50,7 @@ services:
 
 	- App\Model\UserManager()
 	- App\Model\PackageManager(%configFile%, %satis%)
+	- App\Model\HtmlIndexManager(%wwwDir%/index.html, %tempDir%/cache/index)
 
 	- App\Model\Builder(%outputDir%, %appDir%/../vendor/bin/satis)
 

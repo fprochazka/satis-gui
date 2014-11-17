@@ -1,5 +1,87 @@
-#homepage{
+/* Satis stylesheet (heavily inspired by Pirum) */
+.packagesIndex small {
+	font-size: 80%
+}
+
+.packagesIndex h1, .packagesIndex h2, .packagesIndex h3 {
+	font-family: Georgia, Times New Roman, serif;
+	letter-spacing: -0.03em;
+}
+
+.packagesIndex h1 {
+	font-size: 35px;
+	margin-top: 20px;
+	margin-bottom: 30px
+}
+
+.packagesIndex h2 {
+	font-size: 30px;
+	margin-bottom: 20px;
+	margin-top: 15px
+}
+
+.packagesIndex h3 {
+	font-size: 26px;
+	margin-bottom: 10px;
+	margin-top: 20px
+}
+
+.packagesIndex pre {
+	background-color: #000;
+	color: #fff;
+	margin: 5px 0;
+	overflow: auto;
+	padding: 10px;
+	font-family: monospace
+}
+
+.packagesIndex #ft {
+	margin-top: 10px
+}
+
+.packagesIndex ul {
+	margin-top: 5px
+}
+
+.packagesIndex li strong {
+	color: #666
+}
+
+.packagesIndex p {
+	margin-bottom: 10px
+}
+
+.packagesIndex table {
+	width: 100%
+}
+
+.packagesIndex table th {
+	width: 20%
+}
+
+.packagesIndex table td, .packagesIndex table th {
+	padding: 4px;
+	border: 1px solid #ccc
+}
+
+.packagesIndex th {
+	background-color: #eee
+}
+
+.packagesIndex input#search {
+	font-size: 20px;
+	margin: 5px 0;
+	padding: 4px 5px;
 	width: 100%;
-	height: auto;
-	border: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.packagesIndex #lastupdate {
+	text-align: right;
+}
+
+.packagesIndex #lastupdate time {
+	font-weight: bold;
 }
