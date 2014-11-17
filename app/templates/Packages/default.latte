@@ -33,7 +33,7 @@
 
 	<tr n:foreach="$packages as $package">
 		<td>{$package->type}</td>
-		<td>{$package->url}</td>
+		<td><a href="{$package->url}/settings/hooks" n:if="preg_match('~https?:\\/\\/github.com\\/~', $package->url)">{$package->url}</a></td>
 		<td>{$package->name}</td>
 		<td><a n:href="delete! id => $package->id" onclick="confirm('Really delete package?');"><i class="glyphicon glyphicon-remove"></i> delete</a></td>
 	</tr>
