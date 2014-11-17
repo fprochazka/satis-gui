@@ -13,11 +13,11 @@ parameters:
 	outputDir: %wwwDir%
 	satis:
 		name: A Composer Repository
-		require-all: true
+		require-all: false
 		require-dependencies: true
 		require-dev-dependencies: true
 		archive:
-			directory: %outputDir%/dist
+			directory: dist
 			format: zip
 
 	webhook:

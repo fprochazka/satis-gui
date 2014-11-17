@@ -37,15 +37,21 @@ class Builder
 	}
 
 
+
 	public function build(array $packages = [], callable $callback = NULL)
 	{
 		$this->packages->compileConfig();
-		$configFile = $this->packages->getConfigFile();
 
-		$packageList = implode(' ', $packages);
-		$command = sprintf('php %s build %s %s %s', escapeshellarg($this->binFile), escapeshellarg($configFile), escapeshellarg($this->outputDir), $packageList);
+		$command = sprintf(
+			'php %s --no-ansi --no-interaction build %s %s %s',
+			escapeshellarg($this->binFile),
+			escapeshellarg($this->packages->getConfigFile()),
+			escapeshellarg($this->outputDir),
+			implode(' ', $packages)
+		);
 
-		$process = new Process($command);
+		$process = new Process($command, $this->outputDir);
+		$process->setTimeout(0);
 		$process->run($callback);
 
 		return $process->getOutput();
